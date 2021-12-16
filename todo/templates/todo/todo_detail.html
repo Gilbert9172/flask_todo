@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세 목록</title>
+</head>
+<body>
+    {{ t.title }} 
+    <br>
+    {{ t.desc }}
+    <br>
+    {% if t.complete %}
+        <h4>완료</h4>
+    {% else %}
+        <h4>미완료</h4>
+    {% endif %}
+    <hr>
+    <a href="{{ url_for('main.index') }}">리스트로</a>
+    <a href="{{ url_for('main.update', id=t.id) }}">수정</a>
+    <a href="{{ url_for('main.delete_todo', id=t.id)}}">삭제</a>
+
+</body>
+</html>

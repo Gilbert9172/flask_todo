@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 할 일!!!</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.create') }}" class="btn btn-primary">할일 등록하기</a>
+    </div>
+    <hr>
+    <div>
+    {% for todo in incomplete %}
+        <p>오늘할 일: <a href="{{ url_for('main.detail', id=todo.id)}}">{{ todo.title }}</a></p> 
+        {% if todo.complete == False %}
+            <h5>미완료</h5>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <div>
+        {% for finish in complete %}
+            <p>한 일: <a href="{{ url_for('main.detail', id=finish.id) }}">{{ finish.title }}</a></p>
+            {% if finish.complete %}
+                <h5>완료</h5>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
