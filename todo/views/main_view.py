@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for
+from flask import Blueprint, render_template, request, url_for, g
 from werkzeug.utils import redirect
 from todo.models import Todo
 from todo import db
@@ -26,7 +26,7 @@ def index():
 def create():
     form = TodoForm()
     if request.method == "POST" and form.validate_on_submit():
-        t = Todo(title=form.title.data, desc=form.desc.data, complete = False)
+        t = Todo(title=form.title.data, desc=form.desc.data, user_id= g.user.id, complete = False)
         db.session.add(t)
         db.session.commit()
         # Blueprint에서 url_for 사용할 땐 <블루프린트 명.함수명>으로 써야 한다.
